@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+clear
+figlet -c Applesmc fan controller
+echo "\nTested on mid 2013 apple macbook pro, might work on some later macbooks.\n"
+echo -n "Enter fan speed 1 - 8000: " ; read x
+echo $x > /sys/module/applesmc/drivers/platform:applesmc/applesmc.768/fan1_min
+clear
+
