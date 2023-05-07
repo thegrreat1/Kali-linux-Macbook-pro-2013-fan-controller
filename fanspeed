@@ -15,7 +15,8 @@ clear
 
 else
 
-echo "Error: ${DIR} not found. Can not continue."
+echo "Error: ${APPLESMC} not found. Can not continue."
 read -n 1 -s
+
 fi
 
