@@ -1,21 +1,16 @@
 #!/usr/bin/env sh
 
-## QUICK SIMPLE SCRIPT TO CONTROL FAN SPEED WITHOUT HAVING TO TYPE THE ENTIRE CODE EACH TIME ##
-## RUNNING FAN AT FULL SPEED FOR LONG TIME WILL DO DAMAGE TO THE FAN ##
+if ! [ $(id -u) = 0 ]; then
+   echo "Error: root privileges are needed to run this script"
+   exit 1
+fi
 
-#Figlet is required for ascii logo
 command -v figlet >/dev/null 2>&1 || { echo >&2 "Figlet is missing. Run sudo apt install figlet to continue....."; exit 1; }
 
-#Clear the screen
 clear
-
-#Print ascii logo
 figlet -c Applesmc fan controller
 
-#Path to Apple System Management Controller
 APPLESMC="/sys/module/applesmc/drivers/platform:applesmc/applesmc.768/"
-
-# If path is found execute code if not print error message
 if [ -d "$APPLESMC" ]; then
 
 echo "\nTested on mid 2013 apple macbook pro, might work on some later macbooks.\n"
@@ -25,8 +20,7 @@ clear
 
 else
 
-echo "Error: ${APPLESMC} not found. Can not continue."
+echo "Error: ${DIR} not found. Can not continue."
 read -n 1 -s
-
 fi
 
