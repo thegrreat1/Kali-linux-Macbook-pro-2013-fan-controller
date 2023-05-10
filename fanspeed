@@ -8,7 +8,7 @@ fi
 APPLESMC="/sys/module/applesmc/drivers/platform:applesmc/applesmc.768/"
 SPEED=$1
 
-if [ -z "$my_var" ]
+if [ -z "$SPEED" ]
 then
       echo "Please enter a value between 1 - 8000"
 else
