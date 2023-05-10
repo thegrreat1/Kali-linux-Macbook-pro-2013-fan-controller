@@ -5,22 +5,22 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-command -v figlet >/dev/null 2>&1 || { echo >&2 "Figlet is missing. Run sudo apt install figlet to continue....."; exit 1; }
-
-clear
-figlet -c Applesmc fan controller
-
 APPLESMC="/sys/module/applesmc/drivers/platform:applesmc/applesmc.768/"
-if [ -d "$APPLESMC" ]; then
+SPEED=$1
 
-echo "\nTested on mid 2013 apple macbook pro, might work on some later macbooks.\n"
-echo -n "Enter fan speed 1 - 8000: " ; read x
-echo $x > /sys/module/applesmc/drivers/platform:applesmc/applesmc.768/fan1_min
-clear
-
+if [ -z "$my_var" ]
+then
+      echo "Please enter a value between 1 - 8000"
 else
 
-echo "Error: ${DIR} not found. Can not continue."
-read -n 1 -s
+if [ -d "$APPLESMC" ]; then
+
+      echo "\nTested on mid 2013 apple macbook pro, might work on some later macbooks.\n"
+      echo $SPEED > /sys/module/applesmc/drivers/platform:applesmc/applesmc.768/fan1_min
+      clear
+else
+      echo "Error: ${DIR} not found. Can not continue."
+      read -n 1 -s
+fi      
 fi
 
